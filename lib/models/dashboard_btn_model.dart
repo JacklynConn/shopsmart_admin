@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:shopsmart_admin/screens/inner_screens/orders/orders_screen.dart';
 import 'package:shopsmart_admin/screens/search_screen.dart';
 
+import '../screens/edite_upload_product_form.dart';
 import '../services/assets_manager.dart';
 
 class DashboardButtonModel {
@@ -18,7 +19,9 @@ class DashboardButtonModel {
         DashboardButtonModel(
           title: "Add a new product",
           imagePath: AssetsManager.cloud,
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushNamed(context, EditOrUploadProductScreen.routeName);
+          },
         ),
         DashboardButtonModel(
           title: "inspect all products",
