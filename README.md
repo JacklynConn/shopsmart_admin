@@ -1,6 +1,8 @@
 # shopsmart_admin
 
 A new Flutter project.
+![image](https://github.com/JacklynConn/shopsmart_admin/assets/148744079/c66f0436-8f8d-4ba7-a286-69b0dd1e4ad4)
+
 
 ## Getting Started
 
