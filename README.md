@@ -6,8 +6,8 @@ A new Flutter project.
 ![image](https://github.com/JacklynConn/shopsmart_admin/assets/148744079/45295d34-56a7-4fbf-b3d1-1604db297b94)
 63. Start implementing the Upload Screen
 ![image](https://github.com/JacklynConn/shopsmart_admin/assets/148744079/4f8814fd-8b71-446f-9461-7b67649a2bf2)
-
-
+64. Implement the Upload Product Image widget
+![image](https://github.com/JacklynConn/shopsmart_admin/assets/148744079/4ecfd55e-86e1-4189-b862-b5f9fd67cdf4)
 
 
 ## Getting Started
