@@ -3,17 +3,19 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:shopsmart_admin/consts/app_constants.dart';
-import 'package:shopsmart_admin/services/my_app_method.dart';
-import 'package:shopsmart_admin/widgets/title_text.dart';
-
+import '/models/product_model.dart';
+import '/consts/app_constants.dart';
+import '/services/my_app_method.dart';
+import '/widgets/title_text.dart';
 import '../consts/my_validators.dart';
 import '../widgets/subtitle_text.dart';
 
 class EditOrUploadProductScreen extends StatefulWidget {
   static const routeName = "/EditOrUploadProductScreen";
 
-  const EditOrUploadProductScreen({super.key});
+  const EditOrUploadProductScreen({super.key, this.productModel});
+
+  final ProductModel? productModel;
 
   @override
   State<EditOrUploadProductScreen> createState() =>
@@ -24,6 +26,8 @@ class _EditOrUploadProductScreenState extends State<EditOrUploadProductScreen> {
   final _formKey = GlobalKey<FormState>();
   XFile? _pickedImage;
 
+  bool isEditing = false;
+  String? productNetworkImage;
   late TextEditingController _titleController,
       _priceController,
       _descriptionController,
@@ -33,10 +37,19 @@ class _EditOrUploadProductScreenState extends State<EditOrUploadProductScreen> {
 
   @override
   void initState() {
-    _titleController = TextEditingController();
-    _priceController = TextEditingController();
-    _descriptionController = TextEditingController();
-    _quantityController = TextEditingController();
+    if (widget.productModel != null) {
+      isEditing = true;
+      productNetworkImage = widget.productModel!.productImage;
+      _categoryValue = widget.productModel!.productCategory;
+    }
+    _titleController =
+        TextEditingController(text: widget.productModel!.productTitle);
+    _priceController =
+        TextEditingController(text: widget.productModel!.productPrice);
+    _descriptionController =
+        TextEditingController(text: widget.productModel!.productDescription);
+    _quantityController = TextEditingController(
+        text: widget.productModel!.productQuantity.toString());
     super.initState();
   }
 
@@ -60,6 +73,7 @@ class _EditOrUploadProductScreenState extends State<EditOrUploadProductScreen> {
   void removePickedImage() {
     setState(() {
       _pickedImage = null;
+      productNetworkImage = null;
     });
   }
 
@@ -72,6 +86,14 @@ class _EditOrUploadProductScreenState extends State<EditOrUploadProductScreen> {
       );
       return;
     }
+    if (_pickedImage == null) {
+      MyAppMethods.showErrorORWarningDialog(
+        context: context,
+        subtitle: "Please Pick up an image",
+        fct: () {},
+      );
+      return;
+    }
     final isValid = _formKey.currentState!.validate();
     FocusScope.of(context).unfocus();
     if (isValid) {}
@@ -80,6 +102,14 @@ class _EditOrUploadProductScreenState extends State<EditOrUploadProductScreen> {
   Future<void> _editProduct() async {
     final isValid = _formKey.currentState!.validate();
     FocusScope.of(context).unfocus();
+    if (_pickedImage == null && productNetworkImage == null) {
+      MyAppMethods.showErrorORWarningDialog(
+        context: context,
+        subtitle: "Please Pick up an image",
+        fct: () {},
+      );
+      return;
+    }
     if (isValid) {}
   }
 
@@ -112,7 +142,7 @@ class _EditOrUploadProductScreenState extends State<EditOrUploadProductScreen> {
       },
       child: Scaffold(
         bottomSheet: SizedBox(
-          height: kBottomNavigationBarHeight,
+          height: kBottomNavigationBarHeight + 10,
           child: Material(
             color: Theme.of(context).scaffoldBackgroundColor,
             child: Row(
@@ -140,15 +170,19 @@ class _EditOrUploadProductScreenState extends State<EditOrUploadProductScreen> {
                 ),
                 ElevatedButton.icon(
                   onPressed: () {
-                    _uploadProduct();
+                    if (isEditing) {
+                      _editProduct();
+                    } else {
+                      _uploadProduct();
+                    }
                   },
                   icon: const Icon(
                     Icons.upload,
                     color: Colors.white,
                   ),
-                  label: const Text(
-                    "Upload Product",
-                    style: TextStyle(
+                  label: Text(
+                    isEditing ? "Edit Product" : "Upload Product",
+                    style: const TextStyle(
                       fontSize: 20,
                       color: Colors.white,
                     ),
@@ -176,7 +210,18 @@ class _EditOrUploadProductScreenState extends State<EditOrUploadProductScreen> {
                   height: 20,
                 ),
                 /* Image picker here ***********************************/
-                if (_pickedImage == null) ...[
+                if (isEditing && productNetworkImage != null) ...[
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: Image.network(
+                      productNetworkImage!,
+                      // fit: BoxFit.cover,
+                      // width: size.width * 0.4 + 10,
+                      height: size.width * 0.5,
+                      alignment: Alignment.center,
+                    ),
+                  ),
+                ] else if (_pickedImage == null) ...[
                   SizedBox(
                     width: size.width * 0.4 + 10,
                     height: size.width * 0.4,
@@ -246,7 +291,7 @@ class _EditOrUploadProductScreenState extends State<EditOrUploadProductScreen> {
                 ),
                 //TODO: Add Choose Category Widget
                 DropdownButton(
-                    hint: const Text("Select Category"),
+                    hint: Text(_categoryValue ?? "Select Category"),
                     value: _categoryValue,
                     items: AppConstants.categoriesDropdownList,
                     onChanged: (String? value) {

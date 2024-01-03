@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shopsmart_admin/screens/edite_upload_product_form.dart';
+import '/screens/edite_upload_product_form.dart';
 import '/providers/product_provider.dart';
 import '/providers/theme_provider.dart';
 import '/screens/dashboard_screen.dart';
 import '/screens/inner_screens/orders/orders_screen.dart';
 import '/screens/search_screen.dart';
-
 import 'consts/theme_data.dart';
 
 void main() {
@@ -36,7 +35,7 @@ class MyApp extends StatelessWidget {
             OrdersScreenFree.routeName: (context) => const OrdersScreenFree(),
             SearchScreen.routeName: (context) => const SearchScreen(),
             EditOrUploadProductScreen.routeName: (context) =>
-                const EditOrUploadProductScreen(),
+                EditOrUploadProductScreen(),
           },
         );
       }),
