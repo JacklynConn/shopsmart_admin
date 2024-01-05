@@ -8,6 +8,8 @@ A new Flutter project.
 ![image](https://github.com/JacklynConn/shopsmart_admin/assets/148744079/4f8814fd-8b71-446f-9461-7b67649a2bf2)
 64. Implement the Upload Product Image widget
 ![image](https://github.com/JacklynConn/shopsmart_admin/assets/148744079/4ecfd55e-86e1-4189-b862-b5f9fd67cdf4)
+65. Make the upload product screen dynamic to allow the admin to edit his product
+![image](https://github.com/JacklynConn/shopsmart_admin/assets/148744079/8e896cfb-c2de-42fc-87d3-e5d6084dd9a0)
 
 
 ## Getting Started
