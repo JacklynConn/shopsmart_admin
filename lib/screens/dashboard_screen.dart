@@ -31,11 +31,12 @@ class DashboardScreenState extends State<DashboardScreen> {
           IconButton(
             onPressed: () {
               themeProvider.setDarkTheme(
-                  themeValue: !themeProvider.getIsDarkTheme);
+                themeValue: !themeProvider.getIsDarkTheme,
+              );
             },
-            icon: Icon(themeProvider.getIsDarkTheme
-                ? Icons.light_mode
-                : Icons.dark_mode),
+            icon: Icon(
+              themeProvider.getIsDarkTheme ? Icons.light_mode : Icons.dark_mode,
+            ),
           ),
         ],
       ),
@@ -43,13 +44,16 @@ class DashboardScreenState extends State<DashboardScreen> {
         crossAxisCount: 2,
         childAspectRatio: 1.0,
         children: List.generate(3, (index) {
-          return  Padding(
+          return Padding(
             padding: const EdgeInsets.all(8.0),
             child: DashboardButtonWidget(
-              title: DashboardButtonModel.dashboardBtnList(context)[index].title,
-              imagePath: DashboardButtonModel.dashboardBtnList(context)[index].imagePath,
+              title:
+                  DashboardButtonModel.dashboardBtnList(context)[index].title,
+              imagePath: DashboardButtonModel.dashboardBtnList(context)[index]
+                  .imagePath,
               onPressed: () {
-                DashboardButtonModel.dashboardBtnList(context)[index].onPressed();
+                DashboardButtonModel.dashboardBtnList(context)[index]
+                    .onPressed();
               },
             ),
           );

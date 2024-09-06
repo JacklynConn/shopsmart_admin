@@ -24,13 +24,18 @@ class DashboardButtonWidget extends StatelessWidget {
           children: [
             Image.asset(
               imagePath,
-              height: 65,
-              width: 65,
+              height: 70,
+              width: 70,
             ),
-            const SizedBox(height: 15),
-            SubtitleTextWidget(
-              label: title,
-              fontSize: 18,
+            const SizedBox(height: 10),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SubtitleTextWidget(
+                label: title,
+                fontSize: 15,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 2,
+              ),
             ),
           ],
         ),
