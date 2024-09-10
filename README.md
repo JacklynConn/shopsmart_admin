@@ -1,16 +1,7 @@
 # shopsmart_admin
-
-A new Flutter project.
-![image](https://github.com/JacklynConn/shopsmart_admin/assets/148744079/c66f0436-8f8d-4ba7-a286-69b0dd1e4ad4)
-62. Implement the Dashboard Screen
-![image](https://github.com/JacklynConn/shopsmart_admin/assets/148744079/45295d34-56a7-4fbf-b3d1-1604db297b94)
-63. Start implementing the Upload Screen
-![image](https://github.com/JacklynConn/shopsmart_admin/assets/148744079/4f8814fd-8b71-446f-9461-7b67649a2bf2)
-64. Implement the Upload Product Image widget
-![image](https://github.com/JacklynConn/shopsmart_admin/assets/148744079/4ecfd55e-86e1-4189-b862-b5f9fd67cdf4)
-65. Make the upload product screen dynamic to allow the admin to edit his product
-![image](https://github.com/JacklynConn/shopsmart_admin/assets/148744079/8e896cfb-c2de-42fc-87d3-e5d6084dd9a0)
-
+![Artboard 1 copy 2](https://github.com/user-attachments/assets/adb25e4b-de17-4249-aba4-9dd3a6cb1cd6)
+![Artboard 1](https://github.com/user-attachments/assets/7007a325-ae45-4777-94f1-721ec870579d)
+![Artboard 1 copy](https://github.com/user-attachments/assets/a9d50c2e-74bc-42d6-bc97-6a609bc00baa)
 
 ## Getting Started
 
